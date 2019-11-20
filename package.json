@@ -1,0 +1,7 @@
+{
+  "name": "flood-game",
+  "version": "0.0.1",
+  "description": "A flood game implementation with react",
+  "main": "index.js",
+  "license": "MIT"
+}
