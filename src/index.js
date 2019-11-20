@@ -14,6 +14,7 @@ for (let cell of cells) {
   cell.classList.add(COLORS[Math.floor(Math.random() * COLORS.length)])
 }
 
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
