@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function Cell({className}) {
+export default function Cell({color}) {
   return (
-    <div className={`col ${className}`} />
+    <div className={`col ${color}`} />
   )
 }
