@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { ReactComponent as Arrow } from './arrow.svg'
 import { ReactComponent as Reset } from './reset.svg'
-import Cell from './components/Cell';
+
+function Cell({color}) {
+  return (
+    <div className={`col ${color}`} />
+  )
+}
 
 function App() {
 
   const COLORS = ['yellow', 'green', 'blue', 'violet', 'pink', 'red'];
   const SIZE = 14;
-  
+
   function randomNum(max) {
     return Math.floor(Math.random() * max)
   }
