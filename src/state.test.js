@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import _ from 'lodash'
+import { flood } from './utils'
 
-
-// TODO: implement the fuction. all the test should pass
-const flood = (field) => {
-  return field
-}
 
 it('flood simplest', () => {
   const field = [['blue']]
@@ -52,4 +49,16 @@ it('flood small field blue -> grey', () => {
     ['grey', 'cyan', 'grey'],
     ['grey', 'grey', 'grey'],
   ])
+})
+
+it('flood big field field blue -> grey', () => {
+  const field = _.times(
+    25,
+    () => ['blue', ..._.times(24, () => 'grey')]
+  )
+  const actual = flood(field, 'grey')
+  expect(actual).toEqual(_.times(
+    25,
+    () => _.times(25, () => 'grey')
+  ))
 })

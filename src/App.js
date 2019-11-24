@@ -11,7 +11,10 @@ function Cell({color, onClick}) {
 
 function App() {
   let board = useSelector(state => state.field)
+  let counter = useSelector(state => state.counter)
+  let currentColor = useSelector(state => state.currentColor)
   const dispatch = useDispatch()
+  document.body.className = currentColor
   board = board.map((row, index) => (
     <div key={index} className="row">
       {row.map((color, index) => (
@@ -24,7 +27,7 @@ function App() {
     <>
       <div className="top">
         <div><Arrow/>{"Start here"}</div>
-        <div>{"1/25"}<Reset/></div>
+        <div>{`${counter + 1}/25`}<Reset onClick={()=> dispatch({type: "reset"})}/></div>
       </div>
       <div className="frame">
         <div className="board">
