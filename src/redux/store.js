@@ -2,7 +2,7 @@ import { createStore } from "redux";
 
 
 const COLORS = ['yellow', 'green', 'blue', 'violet', 'pink', 'red']
-const SIZE = 25
+const SIZE = 16
 
 function randomNum(max) {
   return Math.floor(Math.random() * max)
