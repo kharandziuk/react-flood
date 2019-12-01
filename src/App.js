@@ -45,7 +45,7 @@ function App() {
   ))
   return (
     <>
-      {modal}
+      <Modal/>
       <div className="top">
         <div><Arrow/>{"Start here"}</div>
         <div>{`${counter + 1}/25`}<Reset onClick={()=> dispatch({type: "reset"})}/></div>
