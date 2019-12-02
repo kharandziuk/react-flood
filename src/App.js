@@ -1,53 +1,29 @@
-import React, { useState } from 'react';
-import { ReactComponent as Arrow } from './arrow.svg'
-import { ReactComponent as Reset } from './reset.svg'
-import { shallowEqual, useSelector } from 'react-redux'
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterIcon
-} from 'react-share';
-
-function Cell({color}) {
-  return (
-    <div className={`col ${color}`} />
-  )
-}
-
-const Modal = () => {
-  return (<div id="open-modal" className="modal-window">
-    <div>
-      You result is 25/25
-      <FacebookShareButton
-      url={"http://HERE_SHOULD_BEPROPPER_ONE.s3-website.eu-central-1.amazonaws.com/"}>
-        <FacebookIcon round={true} />
-        <TwitterIcon round={true} />
-      </FacebookShareButton>
-    </div>
-  </div>)
-}
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { ReactComponent as GithubIcon } from './github-brands.svg'
+import Board from './components/Board'
+import Modal from './components/Modal'
 
 function App() {
-  let board = useSelector(state => state.field)
-  board = board.map((row, index) => (
-    <div key={index} className="row">
-      {row.map((color, index) => (
-        <Cell key={index} color={color} />
-      ))}
-    </div>
-  ))
+  let counter = useSelector(state => state.counter)
+  let isDone = useSelector(state => state.isDone)
+  const dispatch = useDispatch()
+  
   return (
     <>
-      <Modal/>
-      <div className="top">
-        <div><Arrow/>{"Start here"}</div>
-        <div>{"1/25"}<Reset/></div>
+      <h1 className="text-center">Welcome to flood it game!</h1>
+      <div className="frame text-center mb">Click on a color and fill the entire board with one color with 25 flood fills or less.</div>
+      <div className="flex frame mb">
+        <div>Fills {`${counter}/25`}</div>
+        <button className="btn" onClick={()=> dispatch({type: "reset"})}>New game</button>
       </div>
-      <div className="frame">
-        <div className="board">
-          {board}
-        </div>
+      <div className="frame mb">
+        <Board />
       </div>
+      <div className="text-sm text-center">
+        Made by: <GithubIcon className="icon"/> <a href="https://github.com/kharandziuk" rel="noopener noreferrer" target="_blank">Kharandziuk</a> &amp; <GithubIcon className="icon"/> <a href="https://github.com/hypersnob" target="_blank" rel="noopener noreferrer">Hypesnob</a>
+      </div>
+      <Modal isDone={isDone} />
     </>
   )
 }
