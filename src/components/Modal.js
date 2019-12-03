@@ -19,7 +19,7 @@ function Modal({isDone}) {
   const shareUrl = window.location.href;
   const dispatch = useDispatch()
   return (
-  <div className="modal" hidden={isDone}>
+  <div className="modal" hidden={!isDone}>
     <div className="modal-content">
       <h3 className="mb">You result is {counter} / 25.</h3>
       <h3 className="mb-lg">Share this game!</h3>
