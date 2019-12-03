@@ -3,22 +3,44 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   FacebookShareButton,
   FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  TelegramShareButton,
+  TelegramIcon,
+  RedditShareButton,
+  RedditIcon,
+  WhatsappShareButton,
+  WhatsappIcon
 } from 'react-share';
 
 function Modal({isDone}) {
   let counter = useSelector(state => state.counter)
+  // const shareUrl = "http://flood-game.s3-website.eu-central-1.amazonaws.com/";
+  const shareUrl = window.location.href;
   const dispatch = useDispatch()
   return (
-  <div className="modal" hidden={!isDone}>
+  <div className="modal" hidden={isDone}>
     <div className="modal-content">
-      <h3>You result is {counter} / 25. Share it!</h3>
-      <div>
-        <FacebookShareButton
-        url={"http://HERE_SHOULD_BEPROPPER_ONE.s3-website.eu-central-1.amazonaws.com/"}>
-          <FacebookIcon round={true} />
+      <h3 className="mb">You result is {counter} / 25.</h3>
+      <h3 className="mb-lg">Share this game!</h3>
+      <div className="flex mb-lg">
+        <FacebookShareButton url={shareUrl}>
+          <FacebookIcon round={true} size={40} />
         </FacebookShareButton>
+        <TwitterShareButton>
+          <TwitterIcon url={shareUrl} round={true} size={40} />
+        </TwitterShareButton>
+        <WhatsappShareButton>
+          <WhatsappIcon url={shareUrl} round={true} size={40} />
+        </WhatsappShareButton>
+        <TelegramShareButton>
+          <TelegramIcon url={shareUrl} round={true} size={40} />
+        </TelegramShareButton>
+        <RedditShareButton>
+          <RedditIcon url={shareUrl} round={true} size={40} />
+        </RedditShareButton>
       </div>
-      <button className="btn" onClick={()=> dispatch({type: "reset"})}>Play again</button>
+      <button className="btn block" onClick={()=> dispatch({type: "reset"})}>Play again</button>
     </div>
   </div>
   )

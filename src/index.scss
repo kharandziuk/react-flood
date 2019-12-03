@@ -1,5 +1,9 @@
 $radius: 2px;
 
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
 html, body{
   width: 100%;
   height: 100%;
@@ -8,6 +12,15 @@ html, body{
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
   color: #fff;
   line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  @media only screen and (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 }
 
 a {
@@ -16,6 +29,9 @@ a {
 
 .mb {
   margin-bottom: .25rem;
+  &-lg {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .wrapper{
@@ -33,11 +49,13 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  svg {
-    height: 1em;
-    path {
-      fill: #fff;
-    }
+}
+
+svg.icon {
+  height: 1em;
+  width: 1em;
+  path {
+    fill: #fff;
   }
 }
 
@@ -95,10 +113,10 @@ $colors: (
     &:hover {
       background-color: darken(#5656a0, 10%);
     }
-}
-
-.icon {
-  width: 1em;
+    &.block{
+      display: block;
+      width: 100%;
+    }
 }
 
 .modal {

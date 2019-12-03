@@ -20,7 +20,7 @@ function App() {
       <div className="frame mb">
         <Board />
       </div>
-      <div className="text-sm text-center">
+      <div className="text-sm text-center mb">
         Made by: <GithubIcon className="icon"/> <a href="https://github.com/kharandziuk" rel="noopener noreferrer" target="_blank">Kharandziuk</a> &amp; <GithubIcon className="icon"/> <a href="https://github.com/hypersnob" target="_blank" rel="noopener noreferrer">Hypesnob</a>
       </div>
       <Modal isDone={isDone} />
