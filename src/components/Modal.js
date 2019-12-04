@@ -15,7 +15,6 @@ import {
 
 function Modal({isDone}) {
   let counter = useSelector(state => state.counter)
-  // const shareUrl = "http://flood-game.s3-website.eu-central-1.amazonaws.com/";
   const shareUrl = window.location.href;
   const dispatch = useDispatch()
   return (
