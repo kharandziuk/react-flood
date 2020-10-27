@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: environments/staging
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Uses Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn -v
+      - run: yarn build
