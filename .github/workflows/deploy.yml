@@ -5,10 +5,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: environments/staging
-
     steps:
       - uses: actions/checkout@v2
       - name: Uses Node.js 12
@@ -16,4 +12,5 @@ jobs:
         with:
           node-version: 12
       - run: yarn -v
+      - run: yarn
       - run: yarn build
