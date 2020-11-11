@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <h1 className="text-center">Welcome to flood it game!</h1>
-      <div className="frame text-center mb">Click on a color and fill the entire board with one color with 25 flood fills or less.</div>
+      <div className="frame text-center mb">Click on a color and fill the entire board with one color with 25 flood fills or less. Start from the left upper corner</div>
       <div className="flex frame mb">
         <div>Fills {`${counter}/25`}</div>
         <button className="btn" onClick={()=> dispatch({type: "reset"})}>New game</button>
