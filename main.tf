@@ -1,7 +1,7 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
 variable "bucket_name" {
-  default="my-flood"
+  default="flood-game"
 }
 
 provider "aws" {
@@ -21,12 +21,6 @@ variable "mime_types" {
   }
 }
 
-resource "null_resource" "yarn_build" {
-  provisioner "local-exec" {
-    command = "yarn build"
-  }
-}
-
 resource "aws_s3_bucket_policy" "public_access" {
   bucket = aws_s3_bucket.flood_bucket.id
 
@@ -37,29 +31,16 @@ resource "aws_s3_bucket_policy" "public_access" {
      "Sid":"PublicReadForGetBucketObjects",
        "Effect":"Allow",
        "Principal": "*",
-       "Action":["s3:GetObject"],
+       "Action":[
+         "s3:GetObject",
+         "s3:PutObject"
+       ],
        "Resource":["arn:aws:s3:::${aws_s3_bucket.flood_bucket.id}/*"
        ]
      }
    ]
  }
 POLICY
-}
-
-resource "aws_s3_bucket_object" "game_static" {
-  for_each = fileset("${path.module}/build", "**/*.*")
-
-  bucket = aws_s3_bucket.flood_bucket.id
-  key    = each.value
-  source = "${path.module}/build/${each.value}"
-  content_type = lookup(
-    var.mime_types,
-    reverse(split(".", each.value))[0],
-    "application/octet-stream"
-  )
-  depends_on = [
-    null_resource.yarn_build
-  ]
 }
 
 resource "aws_s3_bucket" "flood_bucket" {
